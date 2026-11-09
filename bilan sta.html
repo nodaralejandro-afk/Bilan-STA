@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilan réflexif de la team STA — participation, engagements, demandes</title>
+<style>
+:root{
+  --bg:#faf8f5; --card:#ffffff; --ink:#1f2328; --mute:#5e6670; --line:#e3ded6;
+  --A:#2a7f8e; --B:#c0612b; --C:#6b4fa3; --D:#3b7d3b; --acc:#1f2328;
+  --good:#2f7d4f; --bad:#b3402f; --soft:#f1ede6;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#17191c;--card:#1f2226;--ink:#eceae6;--mute:#a2a8b0;--line:#33383e;--soft:#272b30;--acc:#eceae6;
+  --A:#5fb7c6;--B:#e49a6c;--C:#a994d8;--D:#7fc17f;--good:#6fcf97;--bad:#ef8b7b}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:28px 20px 8px;max-width:1000px;margin:0 auto}
+h1{font-size:1.55rem;margin:0 0 6px;line-height:1.25}
+h2{font-size:1.25rem;margin:0 0 10px}
+h3{font-size:1.05rem;margin:18px 0 8px}
+.sub{color:var(--mute);margin:0}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 20px}
+nav .in{max-width:1000px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font:inherit;font-size:.92rem;cursor:pointer}
+nav button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+main{max-width:1000px;margin:0 auto;padding:20px}
+section.tab{display:none}
+section.tab.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.note{background:var(--soft);border-left:4px solid var(--mute);padding:10px 14px;border-radius:6px;font-size:.93rem;color:var(--mute);margin:12px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+ol.steps{padding-left:20px}ol.steps li{margin-bottom:6px}
+.dimhead{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.dot{width:14px;height:14px;border-radius:50%;flex:none}
+.item{border-top:1px solid var(--line);padding:12px 0}
+.item:first-of-type{border-top:0}
+.item p{margin:0 0 8px}
+.rows{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center}
+.lab{font-size:.82rem;color:var(--mute);min-width:96px}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{width:38px;height:34px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;font:inherit;cursor:pointer}
+.seg button.on{background:var(--c,var(--acc));border-color:var(--c,var(--acc));color:#fff;font-weight:600}
+.legend{font-size:.85rem;color:var(--mute)}
+label.f{display:block;font-size:.9rem;margin:8px 0 2px}
+input[type=number],select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+textarea{min-height:84px;resize:vertical}
+.numgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:.9rem;cursor:pointer;display:flex;gap:6px;align-items:center}
+.chips label.on{background:var(--soft);border-color:var(--acc)}
+.btn{border:1px solid var(--acc);background:var(--acc);color:var(--bg);padding:9px 16px;border-radius:8px;font:inherit;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--mute);font-size:.82rem}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:10px;border-radius:5px;background:var(--soft);position:relative;min-width:90px}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--c)}
+.bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55}
+.pos{color:var(--good)}.neg{color:var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:8px 0}
+.kpi{background:var(--soft);border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:1.45rem;line-height:1.2}
+.kpi span{font-size:.82rem;color:var(--mute)}
+.hide{display:none}
+.small{font-size:.86rem;color:var(--mute)}
+.err{color:var(--bad);font-size:.9rem}
+.sec-rest textarea{min-height:130px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Bilan réflexif de la team STA</h1>
+  <p class="sub">Participation, engagements et demandes — individuel et collectif · comparaison entre semestres</p>
+</header>
+<nav><div class="in" id="nav"></div></nav>
+<main>
+
+<section class="tab" id="t-cadre">
+  <div class="card">
+    <h2>Pourquoi cet outil</h2>
+    <p>Prendre du recul, en équipe, sur ce qui a changé entre un semestre de référence et le semestre 5 : nos <b>engagements</b> (tenus, freinés, non tenus, et pourquoi), nos <b>demandes</b> (entendues ? prises en compte ? avec quels effets sur la collaboration) et notre <b>présence</b> physique et psychique, en présentiel comme sur Teams. Ce n'est pas une notation : c'est une introspection d'équipe pour s'ajuster et se projeter dans la pratique professionnelle (animation, éducation spécialisée, service social).</p>
+    <div class="note"><b>Question guide :</b> comment l'état et la présence physique et psychique, en présentiel et/ou en Teams, influencent-ils l'investissement collectif dans nos projets (collectifs et individuels) ?</div>
+    <p><b>Hypothèse de travail à interroger, pas à confirmer :</b> face à un écart d'investissement (membres très investis / moins investis, heures de projet non comptées), la lecture porte d'abord sur le <i>dispositif</i> (cadre, rôles, outils, suivi) et pas seulement sur la responsabilité individuelle. L'outil sert à regarder les deux, sans désigner de personnes.</p>
+  </div>
+  <div class="card">
+    <h2>Mode d'emploi</h2>
+    <ol class="steps">
+      <li><b>Mon questionnaire</b> (10 à 15 min) : 24 affirmations, chacune notée de 1 à 5 pour le semestre de référence et pour le S5, plus quelques données factuelles et les freins rencontrés.</li>
+      <li><b>Mon bilan</b> : tes résultats restent privés sur ton appareil. Tu y vois tes évolutions et tes commentaires personnels.</li>
+      <li>Tu copies ton <b>code anonyme</b> (chiffres seulement, aucun nom ni commentaire) et tu le transmets à la personne qui compile, ou tu le colles en séance.</li>
+      <li><b>Synthèse collective</b> : on colle tous les codes ; seuls les résultats agrégés apparaissent. On lit ensemble les écarts et les liens entre présence, engagement, demandes et posture.</li>
+      <li><b>Restitution</b> : une trame pré-remplie avec les chiffres, à compléter ensemble (freins, ajustements, engagements pour la suite).</li>
+    </ol>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Confidentialité</h3>
+      <p class="small">Rien n'est envoyé sur Internet : les réponses vivent dans ton navigateur. Le code anonyme ne contient que des chiffres. Avec 15 personnes, un profil très atypique peut rester reconnaissable : à discuter en équipe avant la collecte. Les commentaires libres ne sont jamais exportés.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Limites à garder en tête</h3>
+      <p class="small">Les notes du semestre de référence sont rétrospectives (mémoire reconstruite). L'équipe est passée de 19 (S1) à 15 (S5) : les personnes parties ne sont pas dans les données (biais de survie). Avec une quinzaine de réponses, les corrélations sont des pistes de réflexion, pas des preuves, et ne disent rien de la causalité.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Ancrages théoriques des indicateurs (à approfondir)</h3>
+    <ul class="small">
+      <li><b>Engagement à trois dimensions</b> (comportementale, émotionnelle, cognitive) : Fredricks, Blumenfeld et Paris, 2004.</li>
+      <li><b>Théorie de l'autodétermination</b> (autonomie, compétence, affiliation comme moteurs de la motivation) : Deci et Ryan.</li>
+      <li><b>Sécurité psychologique</b> dans les équipes (oser demander, signaler, se tromper) : Edmondson, 1999.</li>
+      <li><b>Praticien réflexif</b> (réfléchir dans et sur l'action) : Schön, 1983 ; <b>compétence comme mobilisation en situation</b> : Le Boterf.</li>
+      <li><b>Conscientisation</b> (prendre conscience des rapports sociaux pour agir dessus) : Paulo Freire, pédagogie des opprimés, 1968.</li>
+    </ul>
+    <p class="small">Ce sont des pistes de lecture pour nourrir la restitution ; vérifie les références exactes avant de les citer dans un document évalué.</p>
+  </div>
+</section>
+
+<section class="tab" id="t-q">
+  <div class="card">
+    <div class="grid2">
+      <div>
+        <label class="f" for="refsem">Semestre de référence pour la comparaison</label>
+        <select id="refsem"><option>S1</option><option>S2</option><option>S3</option><option>S4</option></select>
+      </div>
+      <div class="legend" style="align-self:end">1 = Pas du tout d'accord · 2 = Plutôt pas · 3 = Mitigé · 4 = Plutôt d'accord · 5 = Tout à fait d'accord. Laisse vide si tu ne peux pas répondre (surtout pour le semestre de référence, si tu n'étais pas là).</div>
+    </div>
+  </div>
+  <div id="qdims"></div>
+
+  <div class="card">
+    <div class="dimhead"><span class="dot" style="background:var(--A)"></span><h2 style="margin:0">Données factuelles du S5</h2></div>
+    <p class="small">Laisse vide si tu ne sais pas. Mieux vaut une estimation honnête qu'un chiffre inventé.</p>
+    <h3>Présence</h3>
+    <div class="numgrid" id="f-pres"></div>
+    <h3>Mes engagements individuels envers l'équipe</h3>
+    <div class="numgrid" id="f-eng"></div>
+    <h3>Mes demandes à l'équipe</h3>
+    <div class="numgrid" id="f-dem"></div>
+  </div>
+
+  <div class="card">
+    <div class="dimhead"><span class="dot" style="background:var(--B)"></span><h2 style="margin:0">Ce qui a freiné mes engagements</h2></div>
+    <p class="small">Coche tout ce qui a joué ce semestre (jusqu'à tous).</p>
+    <div class="chips" id="freins"></div>
+  </div>
+
+  <div class="card">
+    <h2>Mes commentaires (privés)</h2>
+    <p class="small">Ils restent dans ton bilan et ne sont jamais exportés. Ils servent à préparer ce que tu voudras dire en séance.</p>
+    <div id="comments"></div>
+  </div>
+  <p><button class="btn" data-go="bilan">Voir mon bilan →</button></p>
+</section>
+
+<section class="tab" id="t-bilan">
+  <div id="bilan"></div>
+</section>
+
+<section class="tab" id="t-collectif">
+  <div class="card">
+    <h2>Importer les codes anonymes</h2>
+    <p class="small">Colle un code par ligne (ils commencent par <code>STA1:</code>). Le tien est dans l'onglet « Mon bilan ». Rien n'est enregistré ailleurs que dans ce navigateur.</p>
+    <textarea id="codes" placeholder="STA1:eyJ2IjoxLC4uLg==&#10;STA1:..."></textarea>
+    <p style="margin:10px 0 0"><button class="btn" id="analyse">Analyser</button> <button class="btn alt" id="clearcodes">Vider</button> <span id="parseinfo" class="small"></span></p>
+  </div>
+  <div id="coll"></div>
+</section>
+
+<section class="tab" id="t-rest">
+  <div class="card">
+    <h2>Document de restitution</h2>
+    <p class="small">Les passages chiffrés se remplissent à partir de la synthèse collective. Complète, corrige, puis copie le tout pour le coller dans ton document de travail.</p>
+    <p><button class="btn alt" id="regen">Régénérer les chiffres automatiques</button> <button class="btn" id="copyrest">Copier le document</button> <span id="copyinfo" class="small"></span></p>
+  </div>
+  <div id="rest"></div>
+</section>
+
+</main>
+
+<script>
+"use strict";
+const DIMS=[
+ {id:"A",c:"var(--A)",titre:"Présence physique et psychique",intro:"En présentiel et sur Teams, et l'état dans lequel on est quand on est là.",items:[
+  "Je suis présent·e physiquement aux temps collectifs prévus en présentiel.",
+  "Je suis présent·e et actif·ve lors des temps collectifs en Teams (caméra, parole, participation).",
+  "Quand je suis présent·e, je suis mentalement disponible (attention, écoute, énergie).",
+  "Mon état physique (fatigue, santé, sommeil) me permet de m'investir dans les projets.",
+  "Mon état psychique et émotionnel (stress, charge mentale, motivation) me permet de m'investir.",
+  "Mon investissement est équivalent en Teams et en présentiel."]},
+ {id:"B",c:"var(--B)",titre:"Engagements individuels et collectifs",intro:"Ce qu'on a promis, ce qui a été tenu, ce qui a été freiné.",items:[
+  "Je tiens les engagements que j'ai pris envers l'équipe.",
+  "L'équipe tient ses engagements collectifs.",
+  "Je rends mes contributions dans les délais convenus.",
+  "Je prends des initiatives sans attendre d'être sollicité·e.",
+  "Mon investissement reste stable même quand les heures de projet ne sont pas comptées.",
+  "L'investissement est réparti de façon équilibrée entre les membres de l'équipe."]},
+ {id:"C",c:"var(--C)",titre:"Demandes individuelles et collectives",intro:"Ce qu'on a demandé à l'équipe, et ce que ça a changé.",items:[
+  "J'exprime mes besoins et mes demandes à l'équipe.",
+  "Mes demandes sont entendues par l'équipe.",
+  "Mes demandes entraînent des changements concrets.",
+  "Les demandes collectives ont amélioré notre manière de collaborer.",
+  "Les demandes des autres m'ont fait prendre conscience de choses et évoluer.",
+  "Les demandes ont aidé à réguler les tensions ou les écarts d'investissement."]},
+ {id:"D",c:"var(--D)",titre:"Posture étudiante vers posture professionnelle",intro:"Se positionner, viser l'efficience, mettre des choses en place, repérer la baisse de motivation.",items:[
+  "Je prends position clairement dans les décisions de l'équipe.",
+  "Je cherche l'efficience (les bons moyens pour le résultat visé) dans mes projets.",
+  "Je mets en place des choses concrètes pour que la situation change quand quelque chose ne va pas.",
+  "Je repère et j'exprime les baisses de motivation, les miennes et celles de l'équipe.",
+  "J'agis comme je le ferais dans une équipe professionnelle (animation, éducation spécialisée, service social).",
+  "Face à un écart d'investissement, je m'interroge d'abord sur le dispositif (cadre, outils, rôles) avant de désigner des personnes."]}
+];
+const FREINS=["Fatigue ou santé physique","Charge mentale ou état psychique","Charge des autres modules ou du stage","Heures de projet non comptées","Flou des rôles ou des attentes","Manque de reconnaissance","Climat de groupe ou tensions","Distance (Teams) et coordination difficile","Baisse de motivation ou de sens","Vie personnelle et contraintes extérieures","Dispositif insuffisant (cadre, outils, suivi)"];
+const FACTS=[
+ {k:0,g:"pres",l:"Séances prévues en présentiel"},{k:1,g:"pres",l:"Séances où j'étais présent·e en présentiel"},
+ {k:2,g:"pres",l:"Séances prévues en Teams"},{k:3,g:"pres",l:"Séances où j'étais présent·e en Teams"},
+ {k:4,g:"eng",l:"Engagements tenus"},{k:5,g:"eng",l:"Engagements freinés (tenus en partie ou en retard)"},{k:6,g:"eng",l:"Engagements non tenus"},
+ {k:7,g:"dem",l:"Demandes prises en compte"},{k:8,g:"dem",l:"Demandes prises en compte en partie"},{k:9,g:"dem",l:"Demandes non prises en compte"},{k:10,g:"dem",l:"Demandes restées sans réponse"}
+];
+const NI=24;
+const ITEMS=[];DIMS.forEach((d,di)=>d.items.forEach((t,i)=>ITEMS.push({id:d.id+(i+1),d:di,t})));
+
+/* ---------- état ---------- */
+let S={ref:"S1",r:Array(NI).fill(0),n:Array(NI).fill(0),f:Array(11).fill(null),fr:[],cm:{A:"",B:"",C:"",D:"",G:""},codes:"",rest:{}};
+try{const s=localStorage.getItem("sta-bilan-s5");if(s){const o=JSON.parse(s);S=Object.assign(S,o);}}catch(e){}
+function save(){try{localStorage.setItem("sta-bilan-s5",JSON.stringify(S));}catch(e){}}
+
+/* ---------- utilitaires ---------- */
+const $=s=>document.querySelector(s);
+const fmt=(x,d=2)=>x==null||isNaN(x)?"–":x.toFixed(d).replace(".",",");
+const mean=a=>{a=a.filter(v=>v>0);return a.length?a.reduce((p,c)=>p+c,0)/a.length:null};
+const meanN=a=>{a=a.filter(v=>v!=null&&!isNaN(v));return a.length?a.reduce((p,c)=>p+c,0)/a.length:null};
+const sd=a=>{a=a.filter(v=>v!=null&&!isNaN(v));if(a.length<2)return null;const m=meanN(a);return Math.sqrt(a.reduce((p,c)=>p+(c-m)**2,0)/(a.length-1))};
+function dimMean(arr,di,sub){const idx=sub||[0,1,2,3,4,5];return mean(idx.map(i=>arr[di*6+i]))}
+function pearson(x,y){const p=[];for(let i=0;i<x.length;i++)if(x[i]!=null&&y[i]!=null)p.push([x[i],y[i]]);
+  const n=p.length;if(n<5)return{n,r:null};
+  const mx=p.reduce((a,b)=>a+b[0],0)/n,my=p.reduce((a,b)=>a+b[1],0)/n;
+  let sxy=0,sxx=0,syy=0;p.forEach(([a,b])=>{sxy+=(a-mx)*(b-my);sxx+=(a-mx)**2;syy+=(b-my)**2});
+  if(sxx===0||syy===0)return{n,r:null};
+  const r=sxy/Math.sqrt(sxx*syy);
+  const T=[12.71,4.303,3.182,2.776,2.571,2.447,2.365,2.306,2.262,2.228,2.201,2.179,2.160,2.145,2.131,2.120,2.110,2.101,2.093,2.086,2.080,2.074,2.069,2.064,2.060,2.056,2.052,2.048,2.045,2.042];
+  const df=n-2,t=Math.abs(r)*Math.sqrt(df/(1-r*r||1e-9)),crit=df<=30?T[df-1]:2.0;
+  return{n,r,sig:t>crit};}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function deltaCell(d){if(d==null)return"–";const c=d>0.05?"pos":d<-0.05?"neg":"";return`<span class="${c}">${d>0?"+":""}${fmt(d)}</span>`}
+function barHTML(ref,now,c){const w=v=>v==null?0:Math.max(0,(v-1)/4*100);
+  return`<div class="bar" style="--c:${c}" title="S5 : ${fmt(now)} · réf. : ${fmt(ref)}"><i style="width:${w(now)}%"></i>${ref!=null?`<b style="left:${w(ref)}%"></b>`:""}</div>`}
+
+/* ---------- navigation ---------- */
+const TABS=[["cadre","Cadre"],["q","Mon questionnaire"],["bilan","Mon bilan (privé)"],["collectif","Synthèse collective"],["rest","Restitution"]];
+function go(id){TABS.forEach(([k])=>{$("#t-"+k).classList.toggle("on",k===id);});
+  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));
+  if(id==="bilan")renderBilan();
+  if(id==="rest")renderRest();
+  window.scrollTo(0,0);}
+$("#nav").innerHTML=TABS.map(([k,l])=>`<button data-t="${k}">${l}</button>`).join("");
+$("#nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.t)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(b.dataset.go)});
+
+/* ---------- questionnaire ---------- */
+function seg(which,idx,c){const cur=S[which][idx];
+  return`<div class="seg" style="--c:${c}">`+[1,2,3,4,5].map(v=>`<button data-w="${which}" data-i="${idx}" data-v="${v}" class="${cur===v?"on":""}" aria-label="${v}">${v}</button>`).join("")+`</div>`}
+function renderQ(){
+  $("#refsem").value=S.ref;
+  $("#qdims").innerHTML=DIMS.map((d,di)=>`<div class="card"><div class="dimhead"><span class="dot" style="background:${d.c}"></span><h2 style="margin:0">${d.id}. ${d.titre}</h2></div><p class="small" style="margin-top:0">${d.intro}</p>`+
+   d.items.map((t,i)=>{const idx=di*6+i;return`<div class="item"><p><b>${d.id}${i+1}.</b> ${esc(t)}</p><div class="rows"><span class="lab">${esc(S.ref)} (réf.)</span>${seg("r",idx,d.c)}<span class="lab">S5 (aujourd'hui)</span>${seg("n",idx,d.c)}</div></div>`}).join("")+`</div>`).join("");
+  ["pres","eng","dem"].forEach(g=>{$("#f-"+g).innerHTML=FACTS.filter(f=>f.g===g).map(f=>`<div><label class="f">${f.l}</label><input type="number" min="0" inputmode="numeric" data-f="${f.k}" value="${S.f[f.k]==null?"":S.f[f.k]}"></div>`).join("")});
+  $("#freins").innerHTML=FREINS.map((l,i)=>`<label class="${S.fr.includes(i)?"on":""}"><input type="checkbox" data-fr="${i}" ${S.fr.includes(i)?"checked":""}> ${l}</label>`).join("");
+  const CM=[["A","Présence et état (physique, psychique, Teams/présentiel)"],["B","Engagements : ce qui a été tenu, freiné, et pourquoi"],["C","Demandes : ce qui a été entendu, ce que ça a changé"],["D","Posture : où j'en suis, ce que je veux travailler"],["G","Ce que je voudrais dire à l'équipe ou au coach"]];
+  $("#comments").innerHTML=CM.map(([k,l])=>`<label class="f">${l}</label><textarea data-cm="${k}">${esc(S.cm[k]||"")}</textarea>`).join("");
+}
+$("#t-q").addEventListener("click",e=>{const b=e.target.closest(".seg button");if(!b)return;
+  const w=b.dataset.w,i=+b.dataset.i,v=+b.dataset.v;S[w][i]=S[w][i]===v?0:v;save();
+  b.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",+x.dataset.v===S[w][i]));});
+$("#t-q").addEventListener("input",e=>{const t=e.target;
+  if(t.dataset.f!=null){S.f[+t.dataset.f]=t.value===""?null:Math.max(0,+t.value);}
+  if(t.dataset.cm){S.cm[t.dataset.cm]=t.value;}
+  save();});
+$("#t-q").addEventListener("change",e=>{const t=e.target;
+  if(t.id==="refsem"){S.ref=t.value;save();renderQ();}
+  if(t.dataset.fr!=null){const i=+t.dataset.fr;S.fr=t.checked?[...new Set([...S.fr,i])]:S.fr.filter(x=>x!==i);save();t.parentElement.classList.toggle("on",t.checked);}});
+
+/* ---------- code anonyme ---------- */
+function makeCode(){const o={v:1,ref:S.ref,r:S.r,n:S.n,f:S.f.map(x=>x==null?-1:x),fr:S.fr};
+  return"STA1:"+btoa(unescape(encodeURIComponent(JSON.stringify(o))));}
+function parseCode(line){line=line.trim();if(!line.startsWith("STA1:"))throw new Error("préfixe");
+  const o=JSON.parse(decodeURIComponent(escape(atob(line.slice(5)))));
+  if(o.v!==1||o.r.length!==NI||o.n.length!==NI||o.f.length!==11)throw new Error("format");
+  if(![...o.r,...o.n].every(v=>Number.isInteger(v)&&v>=0&&v<=5))throw new Error("valeurs");
+  return o;}
+
+/* ---------- bilan individuel ---------- */
+function renderBilan(){
+  const answered=S.n.filter(v=>v>0).length;
+  if(!answered){$("#bilan").innerHTML=`<div class="card"><h2>Mon bilan</h2><p>Remplis d'abord le questionnaire (au moins quelques affirmations pour le S5).</p><p><button class="btn" data-go="q">Aller au questionnaire</button></p></div>`;return;}
+  const rows=DIMS.map((d,di)=>{const r=dimMean(S.r,di),n=dimMean(S.n,di);return{d,r,n,dl:r!=null&&n!=null?n-r:null}});
+  const it=ITEMS.map((x,i)=>({x,i,r:S.r[i],n:S.n[i],dl:S.r[i]>0&&S.n[i]>0?S.n[i]-S.r[i]:null}));
+  const prog=it.filter(a=>a.dl!=null&&a.dl>0).sort((a,b)=>b.dl-a.dl).slice(0,3);
+  const decl=it.filter(a=>a.dl!=null&&a.dl<0).sort((a,b)=>a.dl-b.dl).slice(0,3);
+  const low=it.filter(a=>a.n>0&&a.n<=2);
+  const li=a=>`<li><b>${a.x.id}</b> ${esc(a.x.t)} <span class="small">(${a.r||"–"} → ${a.n||"–"})</span></li>`;
+  const pr=(a,b)=>b>0?Math.round(100*a/b)+" %":"–";
+  const f=S.f;
+  const pP=f[0]>0&&f[1]!=null?f[1]/f[0]:null,pT=f[2]>0&&f[3]!=null?f[3]/f[2]:null;
+  const eTot=(f[4]||0)+(f[5]||0)+(f[6]||0),dTot=(f[7]||0)+(f[8]||0)+(f[9]||0)+(f[10]||0);
+  const code=makeCode();
+  $("#bilan").innerHTML=`
+  <div class="card"><h2>Mon évolution par dimension</h2>
+   <p class="small">Barre = S5 ; trait noir = semestre de référence (${esc(S.ref)}).</p>
+   <table><thead><tr><th>Dimension</th><th class="n">${esc(S.ref)}</th><th class="n">S5</th><th class="n">Écart</th><th style="width:30%"></th></tr></thead><tbody>
+   ${rows.map(a=>`<tr><td><span class="dot" style="display:inline-block;background:${a.d.c};margin-right:6px"></span>${a.d.id}. ${a.d.titre}</td><td class="n">${fmt(a.r)}</td><td class="n">${fmt(a.n)}</td><td class="n">${deltaCell(a.dl)}</td><td>${barHTML(a.r,a.n,a.d.c)}</td></tr>`).join("")}
+   </tbody></table></div>
+  <div class="grid2">
+   <div class="card"><h3 style="margin-top:0">Ce qui a le plus progressé</h3>${prog.length?`<ul>${prog.map(li).join("")}</ul>`:`<p class="small">Aucune progression repérée (ou pas de notes de référence).</p>`}</div>
+   <div class="card"><h3 style="margin-top:0">Ce qui a reculé</h3>${decl.length?`<ul>${decl.map(li).join("")}</ul>`:`<p class="small">Aucun recul repéré.</p>`}</div>
+  </div>
+  <div class="card"><h3 style="margin-top:0">Points d'attention (notés 1 ou 2 au S5)</h3>${low.length?`<ul>${low.map(li).join("")}</ul>`:`<p class="small">Aucun.</p>`}</div>
+  <div class="card"><h3 style="margin-top:0">Mes données factuelles</h3>
+   <div class="kpis">
+    <div class="kpi"><b>${pP==null?"–":Math.round(pP*100)+" %"}</b><span>présence en présentiel</span></div>
+    <div class="kpi"><b>${pT==null?"–":Math.round(pT*100)+" %"}</b><span>présence en Teams</span></div>
+    <div class="kpi"><b>${pr(f[4]||0,eTot)}</b><span>engagements tenus (${eTot} pris)</span></div>
+    <div class="kpi"><b>${pr((f[7]||0)+0.5*(f[8]||0),dTot)}</b><span>demandes prises en compte (${dTot} formulées, une prise en compte partielle compte pour moitié)</span></div>
+   </div>
+   <p class="small"><b>Freins que j'ai cochés :</b> ${S.fr.length?S.fr.map(i=>FREINS[i]).join(" · "):"aucun"}</p></div>
+  <div class="card"><h3 style="margin-top:0">Mes commentaires</h3>
+   ${["A","B","C","D","G"].filter(k=>S.cm[k]).map(k=>`<p><b>${k==="G"?"À dire à l'équipe":DIMS["ABCD".indexOf(k)].titre} :</b><br>${esc(S.cm[k]).replace(/\n/g,"<br>")}</p>`).join("")||`<p class="small">Aucun commentaire saisi.</p>`}</div>
+  <div class="card"><h3 style="margin-top:0">Mon code anonyme à transmettre</h3>
+   <p class="small">Chiffres uniquement : tes notes, tes données factuelles et tes freins cochés. Ni nom, ni commentaires.</p>
+   <textarea id="mycode" readonly rows="3">${code}</textarea>
+   <p style="margin:10px 0 0"><button class="btn" id="copycode">Copier mon code</button> <span id="copycodeinfo" class="small"></span></p></div>`;
+}
+document.addEventListener("click",async e=>{
+  if(e.target.id==="copycode"){const t=$("#mycode");t.select();let ok=false;try{await navigator.clipboard.writeText(t.value);ok=true}catch(x){}
+    $("#copycodeinfo").textContent=ok?"Copié.":"Sélectionné : fais Ctrl/Cmd+C pour copier.";}
+  if(e.target.id==="copyrest"){const txt=restText();let ok=false;try{await navigator.clipboard.writeText(txt);ok=true}catch(x){}
+    $("#copyinfo").textContent=ok?"Document copié.":"Copie refusée par le navigateur : sélectionne le texte à la main.";}
+});
+
+/* ---------- synthèse collective ---------- */
+let COLL=null;
+$("#codes").value=S.codes||"";
+$("#codes").addEventListener("input",()=>{S.codes=$("#codes").value;save()});
+$("#clearcodes").addEventListener("click",()=>{$("#codes").value="";S.codes="";save();COLL=null;$("#coll").innerHTML="";$("#parseinfo").textContent=""});
+$("#analyse").addEventListener("click",analyse);
+function analyse(){
+  const lines=$("#codes").value.split(/\s+/).filter(Boolean);
+  const people=[];let bad=0;
+  lines.forEach(l=>{try{people.push(parseCode(l))}catch(e){bad++}});
+  $("#parseinfo").innerHTML=`${people.length} code(s) lu(s)`+(bad?` <span class="err">· ${bad} illisible(s)</span>`:"");
+  if(!people.length){COLL=null;$("#coll").innerHTML="";return}
+  const refs=[...new Set(people.map(p=>p.ref))];
+  const P=people.map(p=>({A:[0,1,2,3].map(di=>dimMean(p.n,di)),R:[0,1,2,3].map(di=>dimMean(p.r,di)),
+     etat:dimMean(p.n,0,[2,3,4]),pres:dimMean(p.n,0,[0,1]),gap:(p.n[0]>0&&p.n[1]>0)?p.n[0]-p.n[1]:null,p}));
+  const dims=DIMS.map((d,di)=>{const now=P.map(x=>x.A[di]),ref=P.map(x=>x.R[di]);
+    const dl=P.map(x=>x.A[di]!=null&&x.R[di]!=null?x.A[di]-x.R[di]:null);
+    return{d,now:meanN(now),ref:meanN(ref),dl:meanN(dl),sd:sd(now),nDl:dl.filter(v=>v!=null).length,up:dl.filter(v=>v!=null&&v>0.05).length,down:dl.filter(v=>v!=null&&v<-0.05).length}});
+  const items=ITEMS.map((x,i)=>{const nv=people.map(p=>p.n[i]).filter(v=>v>0),rv=people.map(p=>p.r[i]).filter(v=>v>0);
+    const pair=people.filter(p=>p.n[i]>0&&p.r[i]>0).map(p=>p.n[i]-p.r[i]);
+    return{x,now:meanN(nv),ref:meanN(rv),dl:meanN(pair),sd:sd(nv),hi:nv.length?nv.filter(v=>v>=4).length/nv.length:null,n:nv.length}});
+  const sum=k=>{let s=0,c=0;people.forEach(p=>{if(p.f[k]>=0){s+=p.f[k];c++}});return{s,c}};
+  const f=[...Array(11).keys()].map(sum);
+  const rate=(a,b)=>b>0?a/b:null;
+  const pP=rate(f[1].s,f[0].s),pT=rate(f[3].s,f[2].s);
+  const eT=f[4].s,eF=f[5].s,eN=f[6].s,eAll=eT+eF+eN;
+  const dY=f[7].s,dP=f[8].s,dN=f[9].s,dS=f[10].s,dAll=dY+dP+dN+dS;
+  const fr=FREINS.map((l,i)=>({l,c:people.filter(p=>p.fr.includes(i)).length})).sort((a,b)=>b.c-a.c);
+  const cors=[
+   {l:"Présence (A1-A2) et engagement (B)",...pearson(P.map(x=>x.pres),P.map(x=>x.A[1]))},
+   {l:"État physique et psychique (A3-A5) et engagement (B)",...pearson(P.map(x=>x.etat),P.map(x=>x.A[1]))},
+   {l:"Présence et état (A) et demandes (C)",...pearson(P.map(x=>x.A[0]),P.map(x=>x.A[2]))},
+   {l:"Engagement (B) et posture professionnelle (D)",...pearson(P.map(x=>x.A[1]),P.map(x=>x.A[3]))},
+   {l:"Écart Teams / présentiel (A1 moins A2) et engagement (B)",...pearson(P.map(x=>x.gap),P.map(x=>x.A[1]))}];
+  COLL={n:people.length,refs,dims,items,pP,pT,eT,eF,eN,eAll,dY,dP,dN,dS,dAll,fr,cors,pts:P.map(x=>[x.A[0],x.A[1]]),gapMean:meanN(P.map(x=>x.gap))};
+  renderColl();
+}
+function scatter(pts){const W=380,H=300,m=38;const v=pts.filter(p=>p[0]!=null&&p[1]!=null);
+  const X=a=>m+(a-1)/4*(W-m-12),Y=a=>H-m-(a-1)/4*(H-m-12);
+  let g="";for(let t=1;t<=5;t++){g+=`<line x1="${X(t)}" x2="${X(t)}" y1="${Y(1)}" y2="${Y(5)}" stroke="var(--line)"/><line y1="${Y(t)}" y2="${Y(t)}" x1="${X(1)}" x2="${X(5)}" stroke="var(--line)"/><text x="${X(t)}" y="${H-m+16}" text-anchor="middle" font-size="11" fill="var(--mute)">${t}</text><text x="${m-8}" y="${Y(t)+4}" text-anchor="end" font-size="11" fill="var(--mute)">${t}</text>`}
+  const dots=v.map(p=>`<circle cx="${X(p[0])+(Math.random()-.5)*5}" cy="${Y(p[1])+(Math.random()-.5)*5}" r="6" fill="var(--A)" fill-opacity=".6" stroke="var(--A)"/>`).join("");
+  return`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px" role="img" aria-label="Nuage de points : présence et état (axe horizontal) contre engagement (axe vertical), une personne par point">${g}${dots}<text x="${(W+m)/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="var(--ink)">Présence et état (A), S5</text><text transform="translate(12 ${(H-m)/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="var(--ink)">Engagement (B), S5</text></svg>`}
+function renderColl(){const c=COLL;if(!c){return}
+  const pc=x=>x==null?"–":Math.round(x*100)+" %";
+  $("#coll").innerHTML=`
+  <div class="card"><h2>Vue d'ensemble</h2>
+   <div class="kpis">
+    <div class="kpi"><b>${c.n}</b><span>personnes ayant répondu</span></div>
+    <div class="kpi"><b>${pc(c.pP)}</b><span>présence en présentiel</span></div>
+    <div class="kpi"><b>${pc(c.pT)}</b><span>présence en Teams</span></div>
+    <div class="kpi"><b>${pc(c.eAll?c.eT/c.eAll:null)}</b><span>engagements tenus (${c.eAll} déclarés)</span></div>
+    <div class="kpi"><b>${pc(c.dAll?(c.dY+0.5*c.dP)/c.dAll:null)}</b><span>demandes prises en compte (${c.dAll} déclarées)</span></div>
+   </div>
+   <p class="small">Semestre(s) de référence choisi(s) : ${c.refs.join(", ")}. ${c.refs.length>1?"Attention : les personnes n'ont pas toutes choisi le même semestre de référence, la comparaison est donc indicative.":""}</p></div>
+  <div class="card"><h2>Évolution par dimension</h2>
+   <table><thead><tr><th>Dimension</th><th class="n">Réf.</th><th class="n">S5</th><th class="n">Écart moyen</th><th class="n">Dispersion S5</th><th class="n">En hausse / en baisse</th><th style="width:20%"></th></tr></thead><tbody>
+   ${c.dims.map(a=>`<tr><td><span class="dot" style="display:inline-block;background:${a.d.c};margin-right:6px"></span>${a.d.id}. ${a.d.titre}</td><td class="n">${fmt(a.ref)}</td><td class="n">${fmt(a.now)}</td><td class="n">${deltaCell(a.dl)}</td><td class="n">${fmt(a.sd)}</td><td class="n">${a.up} / ${a.down}</td><td>${barHTML(a.ref,a.now,a.d.c)}</td></tr>`).join("")}
+   </tbody></table>
+   <p class="small">La dispersion (écart-type) dit si l'équipe est homogène ou partagée : plus elle est élevée, plus les ressentis divergent, ce qui peut signaler l'écart d'investissement évoqué dans le cadre. Trait noir = référence.</p></div>
+  <div class="card"><h2>Présence, état et investissement : que montrent les données ?</h2>
+   <div class="grid2"><div>${scatter(c.pts)}</div>
+   <div><table><thead><tr><th>Lien examiné</th><th class="n">r</th><th class="n">n</th></tr></thead><tbody>
+   ${c.cors.map(k=>`<tr><td>${k.l}</td><td class="n">${k.r==null?"n trop petit":fmt(k.r)+(k.sig?" *":"")}</td><td class="n">${k.n}</td></tr>`).join("")}
+   </tbody></table>
+   <p class="small">* seuil indicatif p &lt; 0,05 (test bilatéral). Écart moyen Teams / présentiel (A1 moins A2) : ${fmt(c.gapMean)}. Lecture : r va de -1 à +1 ; une corrélation n'établit pas de cause (on peut aussi s'investir moins quand on est épuisé, ou être épuisé parce qu'on s'investit beaucoup). Elle oriente la discussion.</p></div></div></div>
+  <div class="card"><h2>Détail par affirmation</h2>
+   <table><thead><tr><th>Affirmation</th><th class="n">Réf.</th><th class="n">S5</th><th class="n">Écart</th><th class="n">Disp.</th><th class="n">≥ 4 au S5</th></tr></thead><tbody>
+   ${c.items.map(a=>`<tr><td><b>${a.x.id}</b> ${esc(a.x.t)}</td><td class="n">${fmt(a.ref)}</td><td class="n">${fmt(a.now)}</td><td class="n">${deltaCell(a.dl)}</td><td class="n">${fmt(a.sd)}</td><td class="n">${pc(a.hi)}</td></tr>`).join("")}
+   </tbody></table></div>
+  <div class="card"><h2>Freins cités</h2>
+   <table><tbody>${c.fr.map(a=>`<tr><td>${a.l}</td><td class="n">${a.c} / ${c.n}</td><td style="width:35%"><div class="bar" style="--c:var(--B)"><i style="width:${c.n?100*a.c/c.n:0}%"></i></div></td></tr>`).join("")}</tbody></table></div>
+  <p><button class="btn" data-go="rest">Passer à la restitution →</button></p>`;
+}
+
+/* ---------- restitution ---------- */
+const RSEC=[
+ ["ctx","1. Contexte et question guide"],
+ ["met","2. Méthode et limites"],
+ ["pres","3. Présence physique et psychique (présentiel et Teams)"],
+ ["eng","4. Engagements : tenus, freinés, non tenus"],
+ ["dem","5. Demandes : entendues, prises en compte, effets sur la collaboration"],
+ ["pos","6. Posture étudiante et posture professionnelle"],
+ ["cro","7. Lecture croisée : présence, état et investissement collectif"],
+ ["fre","8. Ce qui n'a pas joué, et ce qui a joué"],
+ ["aju","9. Ajustements concrets pour la suite (dispositif de l'équipe)"],
+ ["pro","10. Projection dans la pratique professionnelle (animation, éducation spécialisée, service social)"]
+];
+function autoText(){
+  const c=COLL,t={};
+  t.ctx="Question guide : comment l'état et la présence physique et psychique, en présentiel et/ou en Teams, influencent-ils l'investissement collectif dans nos projets, collectifs et individuels ?\nContexte : une équipe où l'investissement est inégal, des heures de projet qui ne sont plus comptées, une posture étudiante et une posture professionnelle à articuler. Hypothèse à discuter : l'enjeu relève du dispositif (cadre, rôles, outils, suivi) autant que de la responsabilité individuelle.";
+  t.met=c?`Questionnaire d'auto-évaluation (24 affirmations notées de 1 à 5, semestre de référence ${c.refs.join("/")} comparé au S5), données factuelles et freins, ${c.n} réponses anonymisées. Limites : notes de référence rétrospectives, équipe passée de 19 à 15 personnes (biais de survie), petit effectif, perceptions et non mesures objectives.`:"À compléter : décrire la démarche, le nombre de réponses, les limites (mémoire rétrospective, biais de survie 19 → 15, petit effectif).";
+  const dm=i=>c?c.dims[i]:null;
+  const ev=(d)=>d?`Moyenne ${fmt(d.ref)} → ${fmt(d.now)} (écart ${d.dl>0?"+":""}${fmt(d.dl)} ; dispersion ${fmt(d.sd)} ; ${d.up} en hausse, ${d.down} en baisse).`:"";
+  t.pres=c?`${ev(dm(0))}\nPrésence déclarée : ${c.pP==null?"–":Math.round(c.pP*100)+" %"} en présentiel, ${c.pT==null?"–":Math.round(c.pT*100)+" %"} en Teams. Écart moyen de perception Teams/présentiel (A1 moins A2) : ${fmt(c.gapMean)}.\nÀ discuter : qu'est-ce qui rend la présence possible ou difficile ? Que veut dire être « présent·e » quand on est à bout ?`:"À compléter à partir de la synthèse collective.";
+  t.eng=c?`${ev(dm(1))}\nEngagements déclarés : ${c.eAll} au total, dont ${c.eT} tenus, ${c.eF} freinés, ${c.eN} non tenus.\nÀ discuter : quels engagements ont été freinés et par quoi ? Qu'est-ce qui s'est passé quand les heures de projet ont cessé d'être comptées ?`:"À compléter.";
+  t.dem=c?`${ev(dm(2))}\nDemandes déclarées : ${c.dAll}, dont ${c.dY} prises en compte, ${c.dP} en partie, ${c.dN} non prises en compte, ${c.dS} sans réponse.\nÀ discuter : quelles demandes ont changé concrètement notre façon de collaborer ? Lesquelles sont restées sans suite, et pourquoi ?`:"À compléter.";
+  t.pos=c?`${ev(dm(3))}\nÀ discuter : où en est-on du positionnement, de l'efficience, de la mise en place de dispositifs ? Comment repère-t-on une baisse de motivation, chez soi et chez les autres, avant qu'elle s'installe ?`:"À compléter.";
+  const k=c?c.cors.filter(x=>x.r!=null).map(x=>`${x.l} : r = ${fmt(x.r)}${x.sig?" (au-dessus du seuil indicatif)":""} (n = ${x.n})`).join("\n"):"";
+  t.cro=c?`${k||"Effectif trop faible pour calculer des liens."}\nLecture prudente : une corrélation oriente la discussion, elle ne prouve pas de causalité. À discuter : l'état physique et psychique est-il une cause, une conséquence, ou les deux, de la baisse d'investissement ?`:"À compléter.";
+  t.fre=c?`Freins les plus cités : ${c.fr.slice(0,4).filter(a=>a.c>0).map(a=>`${a.l} (${a.c}/${c.n})`).join(" ; ")||"–"}.\nÀ compléter ensemble : ce qui a freiné, ce qui a aidé, ce qui n'a pas joué.`:"À compléter.";
+  t.aju="À décider ensemble (concret, daté, qui fait quoi) :\n- Un dispositif pour repérer les baisses de motivation tôt\n- Des règles de présence et de participation en Teams\n- Une façon de formuler et de suivre les demandes\n- Un cadre d'engagement qui tient sans comptage d'heures";
+  t.pro="Ce que cette expérience d'équipe m'apprend pour ma pratique future : se positionner, tenir un cadre, entendre une demande, repérer une baisse de motivation, penser le dispositif avant la faute individuelle. À décliner selon le métier visé (animation, éducation spécialisée, service social).";
+  return t;
+}
+function renderRest(){
+  const auto=autoText();
+  $("#rest").innerHTML=RSEC.map(([k,l])=>{const v=S.rest[k]!=null?S.rest[k]:auto[k];
+    return`<div class="card sec-rest"><h3 style="margin-top:0">${l}</h3><textarea data-rest="${k}">${esc(v)}</textarea></div>`}).join("");
+}
+$("#rest").addEventListener("input",e=>{const k=e.target.dataset.rest;if(k){S.rest[k]=e.target.value;save()}});
+$("#regen").addEventListener("click",()=>{if(!COLL&&$("#codes").value.trim())analyse();S.rest={};save();renderRest()});
+function restText(){const auto=autoText();
+  return"BILAN RÉFLEXIF DE LA TEAM STA — SEMESTRE 5\n\n"+RSEC.map(([k,l])=>`${l}\n${S.rest[k]!=null?S.rest[k]:auto[k]}`).join("\n\n")}
+
+/* ---------- init ---------- */
+renderQ();
+if($("#codes").value.trim())analyse();
+go("cadre");
+</script>
+</body>
+</html>
